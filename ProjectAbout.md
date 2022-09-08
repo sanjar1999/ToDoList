@@ -1,6 +1,6 @@
 # ToDoList
 
-This To Do List project was given by EPAM SYSTEMS in .NET Development training.
+This To Do List project was given as a CAPSTONE PROJECT by EPAM SYSTEMS in .NET Development training.
 
 Have used:
 - .NET 6
