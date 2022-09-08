@@ -11,48 +11,48 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
-    [DbContext(typeof(ApplicationContext))]
-    [Migration("20220907095210_Initial")]
+    [DbContext( typeof( ApplicationContext ) )]
+    [Migration( "20220907095210_Initial" )]
     partial class Initial
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel( ModelBuilder modelBuilder )
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation( "ProductVersion", "6.0.8" )
+                .HasAnnotation( "Relational:MaxIdentifierLength", 128 );
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns( modelBuilder, 1L, 1 );
 
-            modelBuilder.Entity("DAL.Models.ToDoList", b =>
+            modelBuilder.Entity( "DAL.Models.ToDoList", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>( "Id" )
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType( "int" );
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn( b.Property<int>( "Id" ), 1L, 1 );
 
-                    b.Property<DateTime>("DateOfCreation")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>( "DateOfCreation" )
+                        .HasColumnType( "datetime2" );
 
-                    b.Property<DateTime>("DeadlineDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>( "DeadlineDate" )
+                        .HasColumnType( "datetime2" );
 
-                    b.Property<string>("Description")
+                    b.Property<string>( "Description" )
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType( "nvarchar(max)" );
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<int>( "Status" )
+                        .HasColumnType( "int" );
 
-                    b.Property<string>("Title")
+                    b.Property<string>( "Title" )
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType( "nvarchar(max)" );
 
-                    b.HasKey("Id");
+                    b.HasKey( "Id" );
 
-                    b.ToTable("ToDoLists");
-                });
+                    b.ToTable( "ToDoLists" );
+                } );
 #pragma warning restore 612, 618
         }
     }

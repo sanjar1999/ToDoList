@@ -6,21 +6,21 @@ namespace DAL.Migrations
 {
     public partial class IsDeleted_added : Migration
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
+        protected override void Up( MigrationBuilder migrationBuilder )
         {
             migrationBuilder.AddColumn<bool>(
                 name: "IsDeleted",
                 table: "ToDoLists",
                 type: "bit",
                 nullable: false,
-                defaultValue: false);
+                defaultValue: false );
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
+        protected override void Down( MigrationBuilder migrationBuilder )
         {
             migrationBuilder.DropColumn(
                 name: "IsDeleted",
-                table: "ToDoLists");
+                table: "ToDoLists" );
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using DAL;
+﻿#pragma warning disable
+using DAL;
 using DAL.Models;
 using DTOs.Models;
 using Microsoft.EntityFrameworkCore;
-#pragma warning disable
 
 namespace DTOs.Services
 {
@@ -18,6 +18,11 @@ namespace DTOs.Services
         {
             try
             {
+                if ( status == null || id == null )
+                {
+                    throw new ArgumentNullException( nameof( status ) );
+                }
+
                 var todoUpdate = await _db.ToDoLists.Where( x => x.Id == id ).FirstOrDefaultAsync();
 
                 if ( todoUpdate == null )
@@ -43,6 +48,7 @@ namespace DTOs.Services
                 {
                     throw new ArgumentNullException( nameof( todoDTO ) );
                 }
+
                 var res = new ToDoList
                 {
                     Id = todoDTO.Id,
@@ -89,7 +95,12 @@ namespace DTOs.Services
         {
             try
             {
-                var res = await _db.ToDoLists.Where( x => x.Status == status && x.IsDeleted == false)
+                if ( status == null )
+                {
+                    throw new ArgumentNullException( nameof( status ) );
+                }
+
+                var res = await _db.ToDoLists.Where( x => x.Status == status && x.IsDeleted == false )
                                              .Select( y => new ToDoListDTO
                                              {
                                                  Id = y.Id,
@@ -112,7 +123,12 @@ namespace DTOs.Services
         {
             try
             {
-                var res = await _db.ToDoLists.Where( x => x.Id == id && x.IsDeleted == false).FirstOrDefaultAsync();
+                if ( id == null )
+                {
+                    throw new ArgumentNullException( nameof( id ) );
+                }
+
+                var res = await _db.ToDoLists.Where( x => x.Id == id && x.IsDeleted == false ).FirstOrDefaultAsync();
 
                 if ( res == null )
                 {
@@ -141,16 +157,16 @@ namespace DTOs.Services
         {
             try
             {
-                var res = await _db.ToDoLists.Where(y => y.IsDeleted == false)
+                var res = await _db.ToDoLists.Where( y => y.IsDeleted == false )
                                              .Select( x => new ToDoListDTO
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                    Description = x.Description,
-                    DateOfCreation = x.DateOfCreation,
-                    DeadlineDate = x.DeadlineDate,
-                    Status = x.Status
-                } ).ToListAsync();
+                                             {
+                                                 Id = x.Id,
+                                                 Title = x.Title,
+                                                 Description = x.Description,
+                                                 DateOfCreation = x.DateOfCreation,
+                                                 DeadlineDate = x.DeadlineDate,
+                                                 Status = x.Status
+                                             } ).ToListAsync();
 
                 return res;
             }
@@ -164,6 +180,11 @@ namespace DTOs.Services
         {
             try
             {
+                if ( dto == null || id == null )
+                {
+                    throw new ArgumentNullException( nameof( dto ) );
+                }
+
                 var todoUpdate = await _db.ToDoLists.Where( x => x.Id == id ).FirstOrDefaultAsync();
 
                 if ( todoUpdate == null )
